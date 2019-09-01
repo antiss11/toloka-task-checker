@@ -15,7 +15,7 @@ VK_LOGIN_BUTTON = "//span[@class='passp-social-block__list-item-icon passp-socia
 TOLOKA_PAGE_TASKS = "https://toloka.yandex.ru/tasks"
 TASK_TEXT = "//div[@class='snippet__title']"
 TASK_CSS = ".snippet"
-TASKS_FILE = 'task_list.txt'
+TASKS_FILE = 'tasks'
 ALARM_FILE = "alarm.wav"
 
 
@@ -26,7 +26,8 @@ def play_sound(path, count):
         sound.play(count - 1)
 
 
-def load_tasklist(path):
+def load_tasklist(file_name):
+    path = os.path.join(os.getcwd(), file_name)
     with open(path) as f:
         task_list = f.readlines()
         return [str.rstrip() for str in task_list]
