@@ -3,15 +3,12 @@ import time
 import os
 from playsound import playsound
 
-VK_LOGIN = ""
-VK_PASSWORD = ""
 
 
 TOLOKA_PAGE = "https://toloka.yandex.ru/"
 TOLOKA_XPATH_LOGIN_BUTTON = "//span[@class='button__label']"
 VK_LOGIN_BUTTON = "//span[@class='passp-social-block__list-item-icon passp-social-block__list-item-icon_vk']"
 TOLOKA_PAGE_TASKS = "https://toloka.yandex.ru/tasks"
-# TASK_TEXT = "//div[@class='snippet__title']"
 TASK_XPATH = "//div[@class='snippet__title']"
 TASKS_FILE = 'tasks'
 ALARM_FILE = "alarm.wav"
@@ -62,7 +59,6 @@ class TolokaChecker(BrowserCore):
         tasks = BrowserCore.find_element(self, xpath=TASK_XPATH, all=True)
         task_list = load_tasklist(TASKS_FILE)
         for task in tasks:
-            # task_title = repr(task.get_attribute('textContent'))
             task_title = self.get_task_title(task)
             if task_title in task_list:
                 self.log(task_title)
@@ -75,10 +71,9 @@ class TolokaChecker(BrowserCore):
 
 
 if __name__ == "__main__":
-    # browser = TolokaChecker("--log-level=3",
-    #                         "--headless"
-    #                         )
-    # browser.login()
-    # while browser.find_tasks():
-    #     time.sleep(50)
-    print(load_tasklist(TASKS_FILE))
+    browser = TolokaChecker("--log-level=3",
+                            "--headless"
+                            )
+    browser.login()
+    while browser.find_tasks():
+        time.sleep(50)
