@@ -24,7 +24,7 @@ def play_sound(path, count):
 
 def load_tasklist(file_name):
     path = os.path.join(os.getcwd(), file_name)
-    with open(path, encoding='utf-8') as f:
+    with open(path, encoding='utf-8-sig') as f:
         task_list = f.readlines()
         return [str.rstrip() for str in task_list]
 
@@ -75,9 +75,10 @@ class TolokaChecker(BrowserCore):
 
 
 if __name__ == "__main__":
-    browser = TolokaChecker("--log-level=3",
-                            "--headless"
-                            )
-    browser.login()
-    while browser.find_tasks():
-        time.sleep(50)
+    # browser = TolokaChecker("--log-level=3",
+    #                         "--headless"
+    #                         )
+    # browser.login()
+    # while browser.find_tasks():
+    #     time.sleep(50)
+    print(load_tasklist(TASKS_FILE))
