@@ -3,6 +3,8 @@ import time
 import os
 from playsound import playsound
 
+VK_LOGIN = ""
+VK_PASSWORD = ""
 
 
 TOLOKA_PAGE = "https://toloka.yandex.ru/"
